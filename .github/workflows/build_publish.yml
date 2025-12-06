@@ -67,23 +67,23 @@ jobs:
           file: package/docker/Dockerfile
           push: true
           tags: |
-            bahmni/microfrontend-ipd:${{ env.ARTIFACT_VERSION }}
-            bahmni/microfrontend-ipd:latest
+            utsavd/microfrontend-ipd:${{ env.ARTIFACT_VERSION }}
+            utsavd/microfrontend-ipd:latest
 
-  push-translations:
-    name: Push Translations to Transifex
-    runs-on: ubuntu-latest
-    steps:
-      - name: 📥 Checkout code
-        uses: actions/checkout@v4
-      - name: Push Translations to Transifex
-        run: |
-          curl -o transifex.sh https://raw.githubusercontent.com/Bahmni/bahmni-infra-utils/main/transifex.sh
-          chmod +x transifex.sh
-          ./transifex.sh push
-          rm transifex.sh
-        env:
-          TX_TOKEN: ${{ secrets.TX_TOKEN }}
+  # push-translations:
+  #   name: Push Translations to Transifex
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: 📥 Checkout code
+  #       uses: actions/checkout@v4
+  #     - name: Push Translations to Transifex
+  #       run: |
+  #         curl -o transifex.sh https://raw.githubusercontent.com/Bahmni/bahmni-infra-utils/main/transifex.sh
+  #         chmod +x transifex.sh
+  #         ./transifex.sh push
+  #         rm transifex.sh
+  #       env:
+  #         TX_TOKEN: ${{ secrets.TX_TOKEN }}
 
   trigger-workflow:
     name: 🔁 Trigger workflow to deploy to Docker env
